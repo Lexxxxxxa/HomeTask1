@@ -35,10 +35,9 @@ namespace HomeTask1
                         string[] result = Task2.Split(inputString, delimiter);
 
                         Console.WriteLine("Result ");
-                        foreach (string item in result)
-                        {
+                        foreach (string item in result)                        
                             Console.WriteLine(item);
-                        }
+                        
                         break;
 
                     case 3:
@@ -55,6 +54,7 @@ namespace HomeTask1
                         else 
                                 Console.WriteLine($"Total occurrences {totalCount}");
                         break;
+
                     case 4:
 
                         Console.WriteLine("Enter a number up to 9999");
@@ -63,9 +63,8 @@ namespace HomeTask1
                         string words = Task4.ConvertNumberToWords(number);
                         Console.WriteLine($"Number {number} in letters {words}");
 
-
-
                         break;
+
                     case 5:
                         Console.WriteLine("Write first value ");
                         int x = int.Parse(Console.ReadLine());
