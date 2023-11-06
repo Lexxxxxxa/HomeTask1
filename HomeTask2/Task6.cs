@@ -11,7 +11,7 @@
                 char charToEncrypt = text[i];
                 char encryptionKey = key[i % key.Length];
 
-                result[i] = (char)(charToEncrypt + encryptionKey);
+                result[i] = (char)(charToEncrypt ^ encryptionKey);
             }
 
             return new string(result);
@@ -26,7 +26,7 @@
                 char charToDecrypt = text[i];
                 char encryptionKey = key[i % key.Length];
 
-                result[i] = (char)(charToDecrypt - encryptionKey);
+                result[i] = (char)(charToDecrypt ^ encryptionKey);
             }
 
             return new string(result);

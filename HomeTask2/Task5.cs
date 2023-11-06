@@ -4,7 +4,7 @@ namespace HomeTask2
 {
     internal class Task5
     {
-        public static string  CompressDna(string dnaString)
+        public static string CompressDna(string dnaString)
         {
             StringBuilder compressedDna = new StringBuilder();
             int count = 1;
@@ -17,19 +17,33 @@ namespace HomeTask2
                 }
                 else
                 {
-                    compressedDna.Append(dnaString[i - 1]);
-                    compressedDna.Append(count);
+                    if (count > 3)
+                    {
+                        compressedDna.Append(dnaString[i - 1]);
+                        compressedDna.Append(count);
+                    }
+                    else
+                    {
+                        compressedDna.Append(dnaString.Substring(i - count, count));
+                    }
                     count = 1;
                 }
             }
 
-            compressedDna.Append(dnaString[dnaString.Length - 1]);
-            compressedDna.Append(count);
+            if (count > 3)
+            {
+                compressedDna.Append(dnaString[dnaString.Length - 1]);
+                compressedDna.Append(count);
+            }
+            else
+            {
+                compressedDna.Append(dnaString.Substring(dnaString.Length - count, count));
+            }
 
             return compressedDna.ToString();
         }
 
-        public static string DecompressDna(string compressedDna)
+            public static string DecompressDna(string compressedDna)
         {
             StringBuilder decompressedDna = new StringBuilder();
 
