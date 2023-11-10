@@ -47,8 +47,10 @@
                             int stringLength = int.Parse(Console.ReadLine());
 
                             string randomString = Task3.GenrateRandomString(stringLength);
-
                             Console.WriteLine($"Your random string is \n{randomString}");
+
+                            string sortedString = new string(randomString.OrderBy(c => c).ToArray());
+                            Console.WriteLine($"Your orderly string is \n{sortedString}");
                             break;
 
                         case 4:
