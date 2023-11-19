@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask1", "HomeTask1\Home
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask2", "HomeTask2\HomeTask2.csproj", "{36E2644C-4321-466E-8D04-2F9076EEACAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeTask3", "HomeTask3\HomeTask3.csproj", "{5C6C1F71-69B4-414D-83E8-92DC6BD8A819}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask4", "HomeTask3\HomeTask4.csproj", "{5C6C1F71-69B4-414D-83E8-92DC6BD8A819}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

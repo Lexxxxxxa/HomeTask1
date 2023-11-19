@@ -20,7 +20,7 @@ namespace HomeTask4
 
             Console.WriteLine($"Your cards {deck.Cards[0]}, {deck.Cards[2]} (Total points {playerPoints})");
             //uncomment it to trace the bot's actions
-            //Console.WriteLine($"Computer's cards {deck.Cards[1]}, {deck.Cards[3]} (Total points {computerPoints})");
+            Console.WriteLine($"Computer's cards {deck.Cards[1]}, {deck.Cards[3]} (Total points {computerPoints})");
 
             while (true)
             {
@@ -30,13 +30,13 @@ namespace HomeTask4
                 if (response != "y") 
                     break;
 
-                playerPoints += GetCardValue(deck.Cards[temp]);
+                playerPoints += GetCardValue(deck.Cards[temp++]);
                 Console.WriteLine($"You get {deck.Cards[temp]}  (Total points {playerPoints})");
                 Console.WriteLine();
 
                 if (playerPoints == 21)
                 {
-                    Console.WriteLine("You got 21! You win! ]:->");
+                    Console.WriteLine($"You got 21! You win! ]:-> Computer score {computerPoints}");
                     return 1;
                 }
                 else if (playerPoints > 21)
@@ -46,17 +46,18 @@ namespace HomeTask4
                 }
             }
 
-            if (temp < deck.Cards.Count)
+            while (computerPoints <= 16)
             {
                 computerPoints += GetCardValue(deck.Cards[temp++]);
+                //uncomment it to trace the bot's actions
+                Console.WriteLine($"Computer get card {deck.Cards[temp]} (Total points {computerPoints})");
             }
 
-            //uncomment it to trace the bot's actions
-            //Console.WriteLine($"Computer get card {deck.Cards[temp]} (Total points {computerPoints})");
+
 
             if (computerPoints > 21)
             {
-                Console.WriteLine("You win! =D");
+                Console.WriteLine($"You win! =D Computer score {computerPoints}");
                 return 1;
             }
             else if (computerPoints == 21 || computerPoints > playerPoints)
