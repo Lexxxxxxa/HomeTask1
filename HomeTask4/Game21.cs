@@ -20,7 +20,7 @@ namespace HomeTask4
 
             Console.WriteLine($"Your cards {deck.Cards[0]}, {deck.Cards[2]} (Total points {playerPoints})");
             //uncomment it to trace the bot's actions
-            Console.WriteLine($"Computer's cards {deck.Cards[1]}, {deck.Cards[3]} (Total points {computerPoints})");
+            //Console.WriteLine($"Computer's cards {deck.Cards[1]}, {deck.Cards[3]} (Total points {computerPoints})");
 
             while (true)
             {
@@ -36,7 +36,7 @@ namespace HomeTask4
 
                 if (playerPoints == 21)
                 {
-                    Console.WriteLine($"You got 21! You win! ]:-> Computer score {computerPoints}");
+                    Console.WriteLine("You got 21! You win! ]:->");
                     return 1;
                 }
                 else if (playerPoints > 21)
@@ -50,14 +50,12 @@ namespace HomeTask4
             {
                 computerPoints += GetCardValue(deck.Cards[temp++]);
                 //uncomment it to trace the bot's actions
-                Console.WriteLine($"Computer get card {deck.Cards[temp]} (Total points {computerPoints})");
+                //Console.WriteLine($"Computer get card {deck.Cards[temp]} (Total points {computerPoints})");
             }
-
-
 
             if (computerPoints > 21)
             {
-                Console.WriteLine($"You win! =D Computer score {computerPoints}");
+                Console.WriteLine("You win! =D");
                 return 1;
             }
             else if (computerPoints == 21 || computerPoints > playerPoints)
