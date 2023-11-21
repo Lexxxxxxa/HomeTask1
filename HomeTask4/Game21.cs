@@ -4,103 +4,88 @@ namespace HomeTask4
 {
     public class Game21
     {
-        public static int PlayRound()
+        private CardDeck deck;
+        private Player player;
+        private Player computer;
+
+        public Game21()
         {
-            var deck = new CardDeck();
+            deck = new CardDeck();
+            player = new Player();
+            computer = new Player();
+        }
+
+        public string PlayRound()
+        {
+            Console.WriteLine("Welcome to 'Game21'! :-]");
+            Console.ReadLine();
+
             deck.ShuffleDeck();
-            int playerPoints = 0;
-            int computerPoints = 0;
+            player.ResetPoints();
+            computer.ResetPoints();
 
             int temp = 0;
             while (temp < 4)
             {
-                playerPoints += GetCardValue(deck.Cards[temp++]);
-                computerPoints += GetCardValue(deck.Cards[temp++]);
+                player.AddPoints((int)deck.cards[temp].Rank);
+                computer.AddPoints((int)deck.cards[temp + 1].Rank);
+                temp += 2;
             }
 
-            Console.WriteLine($"Your cards {deck.Cards[0]}, {deck.Cards[2]} (Total points {playerPoints})");
-            //uncomment it to trace the bot's actions
-            //Console.WriteLine($"Computer's cards {deck.Cards[1]}, {deck.Cards[3]} (Total points {computerPoints})");
+            Console.WriteLine($"Your cards {deck.cards[0]}, {deck.cards[2]} (Total points {player.Points})");
+            //Console.WriteLine($"Your cards {deck.cards[1]}, {deck.cards[3]} (Total points {computer.Points})");
 
             while (true)
             {
                 Console.WriteLine("Do you want another card? (y/n)");
                 string response = Console.ReadLine().ToLower();
 
-                if (response != "y") 
+                if (response != "y")
                     break;
 
-                playerPoints += GetCardValue(deck.Cards[temp++]);
-                Console.WriteLine($"You get {deck.Cards[temp]}  (Total points {playerPoints})");
+                int playerPoints = (int)deck.cards[++temp].Rank;
+                player.AddPoints(playerPoints);
+                Console.WriteLine($"You get {deck.cards[temp]}  (Total points {player.Points})");
                 Console.WriteLine();
 
-                if (playerPoints == 21)
+                if (player.Points == 21)
                 {
                     Console.WriteLine("You got 21! You win! ]:->");
-                    return 1;
+                    return "Player";
                 }
-                else if (playerPoints > 21)
+                else if (player.Points > 21)
                 {
                     Console.WriteLine("Computer wins! -_-");
-                    return 2;
+                    return "Computer";
                 }
             }
 
-            while (computerPoints <= 16)
+            while (computer.Points <= 16)
             {
-                computerPoints += GetCardValue(deck.Cards[temp++]);
-                //uncomment it to trace the bot's actions
-                //Console.WriteLine($"Computer get card {deck.Cards[temp]} (Total points {computerPoints})");
+                int computerPoints = (int)deck.cards[++temp].Rank;
+                computer.AddPoints(computerPoints);
+                //Console.WriteLine($"You get {deck.cards[temp]} (Total points {computer.Points})");
             }
 
-            if (computerPoints > 21)
+            if (computer.Points > 21)
             {
-                Console.WriteLine("You win! =D");
-                return 1;
+                Console.WriteLine($"You win! =D Computer score {computer.Points}");
+                return "Player";
             }
-            else if (computerPoints == 21 || computerPoints > playerPoints)
+            else if (computer.Points == 21 || computer.Points > player.Points)
             {
-                Console.WriteLine($"Computer wins! о_О Computer score {computerPoints}");
-                return 2;
+                Console.WriteLine($"Computer wins! о_О Computer score {computer.Points}");
+                return "Computer";
             }
-            else if (playerPoints > computerPoints)
+            else if (player.Points > computer.Points)
             {
-                Console.WriteLine($"You win! =) Computer score {computerPoints}");
-                return 1;
+                Console.WriteLine($"You win! =) Computer score {computer.Points}");
+                return "Player";
             }
             else
             {
-                Console.WriteLine($"It's a draw! \\_(?)_/ Computer score {computerPoints}");
-                return 0;
-            }
-
-            static int GetCardValue(Card card)
-            {
-                string rank = card.Rank;
-
-                switch (rank)
-                {
-                    case "6":
-                        return 6;
-                    case "7":
-                        return 7;
-                    case "8":
-                        return 8;
-                    case "9":
-                        return 9;
-                    case "10":
-                        return 10;
-                    case "Ace":
-                        return 11;
-                    case "King":
-                        return 4;
-                    case "Queen":
-                        return 3;
-                    case "Jack":
-                        return 2;
-                    default:
-                        return int.Parse(rank);
-                }
+                Console.WriteLine($"It's a draw! \\_(?)_/ Computer score {computer.Points}");
+                return "";
             }
         }
     }

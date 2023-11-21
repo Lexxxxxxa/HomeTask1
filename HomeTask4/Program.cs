@@ -14,24 +14,23 @@ namespace HomeTask4
             //deck.ReturnPositionOfAce();
             //task4.4
             //deck.SwitchAllClubsOnBeginning();
+            //deck.PrintDeck();
             //task4.5
             //deck.SortDeck();
-            Console.WriteLine("Welcome to 'Game21'! :-]");
             int playerScore = 0;
             int computerScore = 0;
             int gamesPlayed = 0;
-            Console.ReadLine();
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("\nNew game!");
-                int roundWinner = Game21.PlayRound();
+                Game21 game = new Game21();
+                string winner = game.PlayRound();
 
-                if (roundWinner == 1)
+                if (winner == "Player")
                 {
                     playerScore++;
                 }
-                else if (roundWinner == 2)
+                else if (winner == "Computer")
                 {
                     computerScore++;
                 }
