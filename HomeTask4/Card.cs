@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HomeTask4.Enum;
 
 namespace HomeTask4
 {
     public struct Card
     {
-        public Enum.Suit Suit { get; set; }
-        public Enum.Rank Rank { get; set; }
+        public Suit Suit { get;}
+        public Rank Rank { get;}
+
+        public Card(Suit suit, Rank rank)
+        {
+            Suit = suit;
+            Rank = rank;
+        }
 
         public override string ToString()
         {

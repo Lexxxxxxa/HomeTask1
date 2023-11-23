@@ -20,73 +20,77 @@ namespace HomeTask4
             Console.WriteLine("Welcome to 'Game21'! :-]");
             Console.ReadLine();
 
-            deck.ShuffleDeck();
-            player.ResetPoints();
-            computer.ResetPoints();
+            InitializeRound();
 
-            int temp = 0;
-            while (temp < 4)
+            Console.WriteLine($"Your Cards {deck.Cards[0]}, {deck.Cards[2]} (Total points {player.CalculateScore()})");
+
+            int currentIndex = 3; 
+
+            while (AskForAnotherCard())
             {
-                player.AddPoints((int)deck.cards[temp].Rank);
-                computer.AddPoints((int)deck.cards[temp + 1].Rank);
-                temp += 2;
-            }
-
-            Console.WriteLine($"Your cards {deck.cards[0]}, {deck.cards[2]} (Total points {player.Points})");
-            //Console.WriteLine($"Your cards {deck.cards[1]}, {deck.cards[3]} (Total points {computer.Points})");
-
-            while (true)
-            {
-                Console.WriteLine("Do you want another card? (y/n)");
-                string response = Console.ReadLine().ToLower();
-
-                if (response != "y")
-                    break;
-
-                int playerPoints = (int)deck.cards[++temp].Rank;
-                player.AddPoints(playerPoints);
-                Console.WriteLine($"You get {deck.cards[temp]}  (Total points {player.Points})");
+                int playerPoints = (int)deck.Cards[++currentIndex].Rank;
+                player.AddCard(deck.Cards[currentIndex]);
+                Console.WriteLine($"You get {deck.Cards[currentIndex]}  (Total points {player.CalculateScore()})");
                 Console.WriteLine();
 
-                if (player.Points == 21)
+                if (player.CalculateScore() == 21)
                 {
                     Console.WriteLine("You got 21! You win! ]:->");
                     return "Player";
                 }
-                else if (player.Points > 21)
+                else if (player.CalculateScore() > 21)
                 {
                     Console.WriteLine("Computer wins! -_-");
                     return "Computer";
                 }
             }
 
-            while (computer.Points <= 16)
+            while (computer.CalculateScore() <= 16)
             {
-                int computerPoints = (int)deck.cards[++temp].Rank;
-                computer.AddPoints(computerPoints);
-                //Console.WriteLine($"You get {deck.cards[temp]} (Total points {computer.Points})");
+                int computerPoints = (int)deck.Cards[++currentIndex].Rank;
+                computer.AddCard(deck.Cards[currentIndex]);
             }
 
-            if (computer.Points > 21)
+            if (computer.CalculateScore() > 21)
             {
-                Console.WriteLine($"You win! =D Computer score {computer.Points}");
+                Console.WriteLine($"You win! =D Computer score {computer.CalculateScore()}");
                 return "Player";
             }
-            else if (computer.Points == 21 || computer.Points > player.Points)
+            else if (computer.CalculateScore() == 21 || computer.CalculateScore() > player.CalculateScore())
             {
-                Console.WriteLine($"Computer wins! о_О Computer score {computer.Points}");
+                Console.WriteLine($"Computer wins! о_О Computer score {computer.CalculateScore()}");
                 return "Computer";
             }
-            else if (player.Points > computer.Points)
+            else if (player.CalculateScore() > computer.CalculateScore())
             {
-                Console.WriteLine($"You win! =) Computer score {computer.Points}");
+                Console.WriteLine($"You win! =) Computer score {computer.CalculateScore()}");
                 return "Player";
             }
             else
             {
-                Console.WriteLine($"It's a draw! \\_(?)_/ Computer score {computer.Points}");
+                Console.WriteLine($"It's a draw! \\_(?)_/ Computer score {computer.CalculateScore()}");
                 return "";
             }
+        }
+
+        private void InitializeRound()
+        {
+            deck.ShuffleDeck();
+            player.ClearHand();
+            computer.ClearHand();
+
+            for (int i = 0; i < 4; i += 2)
+            {
+                player.AddCard(deck.Cards[i]);
+                computer.AddCard(deck.Cards[i + 1]);
+            }
+        }
+
+        private bool AskForAnotherCard()
+        {
+            Console.WriteLine("Do you want another card? (y/n)");
+            string response = Console.ReadLine().ToLower();
+            return response == "y";
         }
     }
 }

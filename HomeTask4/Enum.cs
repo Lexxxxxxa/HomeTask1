@@ -4,29 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeTask4
+namespace HomeTask4.Enum
 {
-    public class Enum
+    public enum Suit
     {
-        public enum Suit
-        {
-            Spades,
-            Hearts,
-            Diamonds,
-            Clubs
-        }
+        Spades,
+        Hearts,
+        Diamonds,
+        Clubs
+    }
 
-        public enum Rank
-        {
-            Six = 6,
-            Seven = 7,
-            Eight = 8,
-            Nine = 9,
-            Ten = 10,
-            Jack = 2,
-            Queen = 3,
-            King = 4,
-            Ace = 11
-        }
+    public enum Rank
+    {
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10,
+        Jack = 2,
+        Queen = 3,
+        King = 4,
+        Ace = 11
     }
 }

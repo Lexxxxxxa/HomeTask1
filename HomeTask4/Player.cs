@@ -8,16 +8,27 @@ namespace HomeTask4
 {
     public class Player
     {
-        public int Points { get; private set; }
-
-        public void AddPoints(int points)
+        public List<Card> Hand { get; set; }
+        
+        public Player()
         {
-            Points += points;
+            Hand = new List<Card>();
         }
 
-        public void ResetPoints()
+        public int CalculateScore()
         {
-            Points = 0;
+            int score = Hand.Sum(card => (int)card.Rank);
+            return score;
+        }
+
+        public void ClearHand()
+        {
+            Hand.Clear();
+        }
+
+        public void AddCard(Card card)
+        {
+            Hand.Add(card);
         }
     }
 }

@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HomeTask4.Enum;
+using System;
+
 
 namespace HomeTask4
 {
     public class CardDeck
     {
-        public List<Card> deck;
+        private List<Card> Deck;
 
-        public List<Card> cards => deck;
+        public IReadOnlyList<Card> Cards => Deck.AsReadOnly();
 
-        public Enum.Suit[] Suits = { Enum.Suit.Spades, Enum.Suit.Hearts, Enum.Suit.Diamonds, Enum.Suit.Clubs };
-        public Enum.Rank[] Ranks = { Enum.Rank.Six, Enum.Rank.Seven, Enum.Rank.Eight, Enum.Rank.Nine, Enum.Rank.Ten, Enum.Rank.Jack, Enum.Rank.Queen, Enum.Rank.King, Enum.Rank.Ace };
+        private readonly Suit[] Suits = { Suit.Spades, Suit.Hearts, Suit.Diamonds, Suit.Clubs };
+        private readonly Rank[] Ranks = { Rank.Six, Rank.Seven, Rank.Eight, Rank.Nine, Rank.Ten, Rank.Jack, Rank.Queen, Rank.King, Rank.Ace };
 
         public CardDeck()
         {
-            deck = new List<Card>();
+            Deck = new List<Card>();
             GenerateDeck();
         }
 
         public void GenerateDeck()
         {
-            foreach (Enum.Suit suit in Suits)
+            foreach (Suit suit in Suits)
             {
-                foreach (Enum.Rank rank in Ranks)
+                foreach (Rank rank in Ranks)
                 {
-                    deck.Add(new Card { Suit = suit, Rank = rank });
+                    Deck.Add(new Card (suit, rank));
                 }
             }
         }
@@ -33,31 +34,36 @@ namespace HomeTask4
         {
             Random random = new Random();
 
-            for (int i = deck.Count - 1; i > 0; i--)
+            for (int i = Deck.Count - 1; i > 0; i--)
             {
                 int j = random.Next(i + 1);
-                Card temp = deck[i];
-                deck[i] = deck[j];
-                deck[j] = temp;
+                Card temp = Deck[i];
+                Deck[i] = Deck[j];
+                Deck[j] = temp;
             }
         }
 
         public void PrintDeck()
         {
-            foreach (Card card in deck)
+            foreach (Card card in Deck)
             {
                 Console.WriteLine(card + " ");
             }
             Console.WriteLine();
         }
 
-        public void ReturnPositionOfAce()
+        private List<int> GetCardPositions(Func<Card, bool> filter)
         {
-            List<int> acePositions = deck
+            return Deck
                 .Select((card, index) => new { Card = card, Index = index })
-                .Where(item => item.Card.Rank == Enum.Rank.Ace)
+                .Where(item => filter(item.Card))
                 .Select(item => item.Index)
                 .ToList();
+        }
+
+        public void ReturnPositionOfAce()
+        {
+            List<int> acePositions = GetCardPositions(card => card.Rank == Rank.Ace);
 
             foreach (int index in acePositions)
             {
@@ -67,19 +73,15 @@ namespace HomeTask4
 
         public void SwitchAllClubsOnBeginning()
         {
-            List<int> clubsPositions = deck
-                .Select((card, index) => new { Card = card, Index = index })
-                .Where(item => item.Card.Suit == Enum.Suit.Clubs)
-                .Select(item => item.Index)
-                .ToList();
+            List<int> clubsPositions = GetCardPositions(card => card.Suit == Suit.Clubs);
 
             int currentIndex = 0;
 
             foreach (int clubIndex in clubsPositions)
             {
-                Card temp = deck[currentIndex];
-                deck[currentIndex] = deck[clubIndex];
-                deck[clubIndex] = temp;
+                Card temp = Deck[currentIndex];
+                Deck[currentIndex] = Deck[clubIndex];
+                Deck[clubIndex] = temp;
 
                 currentIndex++;
             }
@@ -87,7 +89,7 @@ namespace HomeTask4
 
         public void SortDeck()
         {
-            deck.Sort((card1, card2) =>
+            Deck.Sort((card1, card2) =>
             {
                 int suitComparison = card1.Suit.CompareTo(card2.Suit);
                 if (suitComparison != 0)

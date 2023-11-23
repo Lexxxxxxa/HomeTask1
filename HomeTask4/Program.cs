@@ -7,16 +7,16 @@ namespace HomeTask4
         public static void Main()
         {
             //task4.1
-            //var deck = new CardDeck();
+            //var Deck = new CardDeck();
             //task4.2
-            //deck.ShuffleDeck();
+            //Deck.ShuffleDeck();
             //task4.3
-            //deck.ReturnPositionOfAce();
+            //Deck.ReturnPositionOfAce();
             //task4.4
-            //deck.SwitchAllClubsOnBeginning();
-            //deck.PrintDeck();
+            //Deck.SwitchAllClubsOnBeginning();
+            //Deck.PrintDeck();
             //task4.5
-            //deck.SortDeck();
+            //Deck.SortDeck();
             int playerScore = 0;
             int computerScore = 0;
             int gamesPlayed = 0;
@@ -24,7 +24,7 @@ namespace HomeTask4
             {
                 Console.Clear();
                 Game21 game = new Game21();
-                string winner = game.PlayRound();
+                string winner = game.PlayRound(); 
 
                 if (winner == "Player")
                 {
