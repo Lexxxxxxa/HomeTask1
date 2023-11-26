@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask1", "HomeTask1\HomeTask1.csproj", "{4DB6EAFF-8689-4490-81D0-21790C682463}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeTask2", "HomeTask2\HomeTask2.csproj", "{36E2644C-4321-466E-8D04-2F9076EEACAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask2", "HomeTask2\HomeTask2.csproj", "{36E2644C-4321-466E-8D04-2F9076EEACAA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeTask4", "HomeTask4\HomeTask4.csproj", "{097EEF47-4917-453C-AEA2-E2EC9738BFED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{36E2644C-4321-466E-8D04-2F9076EEACAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36E2644C-4321-466E-8D04-2F9076EEACAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36E2644C-4321-466E-8D04-2F9076EEACAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{097EEF47-4917-453C-AEA2-E2EC9738BFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{097EEF47-4917-453C-AEA2-E2EC9738BFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{097EEF47-4917-453C-AEA2-E2EC9738BFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{097EEF47-4917-453C-AEA2-E2EC9738BFED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
